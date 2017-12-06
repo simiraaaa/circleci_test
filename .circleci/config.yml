@@ -33,13 +33,13 @@ jobs:
         
       # run tests!
       - run: echo start
+      - run: ls -R
   
   d_job:
     <<: *defaults
     steps:
       - run: echo $CIRCLE_BRANCH
       - run: pwd
-      - run: ls -R /
 
   
   f_job:
