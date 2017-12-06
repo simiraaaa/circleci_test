@@ -55,18 +55,17 @@ jobs:
     branches:
       only: /feature\/.*/
     steps:
-      - checkout
       - run: echo feature
 
-workflows:
-  version: 2
-  build_flow:
-    jobs:
-      - build
-      # - deploy:
-      #   requires:
-      #     - build
-      - feature:
-        requires:
-          - build
+# workflows:
+#   version: 2
+#   build_flow:
+#     jobs:
+#       - build
+#       # - deploy:
+#       #   requires:
+#       #     - build
+#       - feature:
+#         requires:
+#           - build
 
