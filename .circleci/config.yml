@@ -39,7 +39,7 @@ jobs:
     steps:
       - run: echo $CIRCLE_BRANCH
       - run: pwd
-      - run: ls -R
+      - run: ls -R /
 
   
   f_job:
