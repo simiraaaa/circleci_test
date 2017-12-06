@@ -58,8 +58,10 @@ workflows:
     jobs:
       - build_job
       - d_job:
-          requires:
-            - build_job
-      - f_job
+        requires:
+          - build_job
+      - f_job:
+        requires:
+          - build_job
       
 
