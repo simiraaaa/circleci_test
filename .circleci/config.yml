@@ -36,9 +36,6 @@ jobs:
   
   d_job:
     <<: *defaults
-    branches:
-      only: 
-      - master
     steps:
       - run: echo deploy
 
@@ -57,8 +54,16 @@ workflows:
       - d_job:
           requires:
             - build_job
+          filters:
+            branches:
+              only: 
+                - master
+                - develop
       - f_job:
           requires:
             - build_job
+          filters:
+            branches:
+              only: /feature\/.*/
       
 
