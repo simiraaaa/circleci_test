@@ -63,12 +63,12 @@ jobs:
       - run: echo deploy
 
   
-  feature:
+  build:
     docker:
       - image: circleci/node:9.2.0
     working_directory: ~/repo
-    # branches:
-    #   only: /feature\/.*/
+    branches:
+      only: /feature\/.*/
     steps:
       - checkout
 
