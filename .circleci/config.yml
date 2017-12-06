@@ -37,7 +37,7 @@ jobs:
   d_job:
     <<: *defaults
     steps:
-      - run: echo deploy
+      - run: echo $CIRCLE_BRANCH
 
   
   f_job:
