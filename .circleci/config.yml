@@ -57,7 +57,7 @@ workflows:
   build_flow:
     jobs:
       - build_job
-      - d_job:
-      - f_job:
+      - d_job
+      - f_job
       
 
