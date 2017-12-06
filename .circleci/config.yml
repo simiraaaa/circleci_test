@@ -2,19 +2,17 @@
 #
 # Check https://circleci.com/docs/2.0/language-javascript/ for more details
 #
+
+# 展開できる変数みたいなやつ
+defaults: &defaults
+  working_directory: ~/repo
+  docker:
+    - image: circleci/node:9.2.0
+
 version: 2
 jobs:
-  build:
-    docker:
-      # specify the version you desire here
-      - image: circleci/node:9.2.0
-      
-      # Specify service dependencies here if necessary
-      # CircleCI maintains a library of pre-built images
-      # documented at https://circleci.com/docs/2.0/circleci-images/
-      # - image: circleci/mongo:3.4.4
-
-    working_directory: ~/repo
+  build_job:
+    <<: *defaults
 
     steps:
       - checkout
@@ -36,24 +34,15 @@ jobs:
       # run tests!
       - run: echo start
   
-  deploy:
-    docker:
-      - image: circleci/node:9.2.0
-    working_directory: ~/repo
-    branches:
-      only:
-        - master
-        - develop
+  d_job:
+    <<: *defaults
     steps:
       - run: echo deploy
 
   
-  feature:
-    docker:
-      - image: circleci/node:9.2.0
-    working_directory: ~/repo
-    branches:
-      only: /feature\/.*/
+  f_job:
+    <<: *defaults
+
     steps:
       - run: echo feature
 
@@ -61,11 +50,20 @@ workflows:
   version: 2
   build_flow:
     jobs:
-      - build
-      - deploy:
-        requires:
-          - build
-      - feature:
-        requires:
-          - build
+      - build_job
+      - d_job:
+          requires:
+            - build_job
+          filters:
+            branches:
+              only: 
+                - master
+                - develop
+      - f_job:
+          requires:
+            - build_job
+          filters:
+            branches:
+              only: /feature\/.*/
+      
 
