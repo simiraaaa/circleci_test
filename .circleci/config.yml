@@ -40,10 +40,6 @@ jobs:
     docker:
       - image: circleci/node:9.2.0
     working_directory: ~/repo
-    branches:
-      only:
-        - master
-        - develop
     steps:
       - run: echo deploy
 
@@ -62,9 +58,6 @@ workflows:
     jobs:
       - build_job
       - d_job:
-          # requires:
-          #   - build_job
       - f_job:
-        #  requires:
-        #     - build_job
+      
 
