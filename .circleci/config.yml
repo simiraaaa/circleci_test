@@ -37,8 +37,8 @@ jobs:
   d_job:
     <<: *defaults
     branches:
-      only: 
-        - master
+        only: 
+          - master
     steps:
       - run: echo deploy
 
