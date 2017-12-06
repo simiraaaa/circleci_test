@@ -38,6 +38,7 @@ jobs:
     <<: *defaults
     steps:
       - run: echo $CIRCLE_BRANCH
+      - run: pwd
 
   
   f_job:
