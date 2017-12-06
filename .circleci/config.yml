@@ -33,7 +33,7 @@ jobs:
         
       # run tests!
       - run: echo start
-      - run: ls -R
+      - run: sh ./scripts/echoenv.sh
   
   d_job:
     <<: *defaults
