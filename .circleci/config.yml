@@ -34,6 +34,7 @@ jobs:
       # run tests!
       - run: echo start
       - run: sh ./scripts/echoenv.sh
+      - run: eb --help
   
   d_job:
     <<: *defaults
