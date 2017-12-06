@@ -48,14 +48,14 @@ jobs:
   #     - run: echo deploy
 
   
-  feature:
-    docker:
-      - image: circleci/node:9.2.0
-    working_directory: ~/feature
-    # branches:
-    #   only: /feature\/.*/
-    steps:
-      - run: echo feature
+  # feature:
+  #   docker:
+  #     - image: circleci/node:9.2.0
+  #   working_directory: ~/feature
+  #   # branches:
+  #   #   only: /feature\/.*/
+  #   steps:
+  #     - run: echo feature
 
 workflows:
   version: 2
@@ -65,7 +65,7 @@ workflows:
       # - deploy:
       #   requires:
       #     - build
-      - feature:
-        requires:
-          - build
+      # - feature:
+      #   requires:
+      #     - build
 
