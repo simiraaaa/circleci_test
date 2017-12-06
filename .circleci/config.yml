@@ -51,7 +51,7 @@ jobs:
   f_job:
     docker:
       - image: circleci/node:9.2.0
-    working_directory: ~/feature
+    working_directory: ~/repo
     branches:
       only: /feature\/.*/
     steps:
