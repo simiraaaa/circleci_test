@@ -52,8 +52,7 @@ jobs:
     docker:
       - image: circleci/node:9.2.0
     working_directory: ~/repo
-    # branches:
-    #   only: /feature\/.*/
+
     steps:
       - run: echo feature
 
@@ -62,7 +61,7 @@ workflows:
   build_flow:
     jobs:
       - build_job
-      # - d_job:
+      - d_job:
           # requires:
           #   - build_job
       - f_job:
