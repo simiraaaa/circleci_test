@@ -39,8 +39,13 @@ jobs:
           key: node_modules-{{ checksum "package.json" }}
         
       # run tests!
-      - run: echo start
-      - run: which pip
+      - run: echo start 
+      - run: |
+        if [ `which eb` ]; then
+          echo exists eb
+        else
+          pip install awsebcli
+        fi
       - run: sh ./scripts/echoenv.sh
   
   d_job:
