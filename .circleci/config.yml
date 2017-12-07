@@ -49,7 +49,16 @@ jobs:
             chmod 600 ~/.aws/*
       - run: cat ~/.aws/config
       - run: cat ~/.aws/credentials
-      - run: which eb
+      - run:
+          name: Install dependencies
+          working_directory: /
+          command: |
+            apt-get -y -qq update
+            apt-get -y -qq install python3.4-dev
+            curl -O https://bootstrap.pypa.io/get-pip.py
+            python3.4 get-pip.py --user
+            pip install awsebcli
+            which eb
   
   d_job:
     <<: *defaults
