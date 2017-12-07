@@ -8,7 +8,6 @@ defaults: &defaults
   working_directory: ~/repo
   docker:
     - image: circleci/node:9.2.0
-    - image: coxauto/aws-ebcli
 
 version: 2
 jobs:
@@ -48,8 +47,11 @@ jobs:
             printf "[default]\naws_access_key_id = ${AWS_ACCESS_KEY_ID}\naws_secret_access_key = ${AWS_SECRET_ACCESS_KEY}" > ~/.aws/config
             printf "[default]\naws_access_key_id = ${AWS_ACCESS_KEY_ID}\naws_secret_access_key = ${AWS_SECRET_ACCESS_KEY}" > ~/.aws/credentials
             chmod 600 ~/.aws/*
+
+      - run: docker pull coxauto/aws-ebcli
       - run: ls
-      - run: ls /bin/      
+      - run: ls /bin/
+      - run: eb --help      
         
   
   d_job:
