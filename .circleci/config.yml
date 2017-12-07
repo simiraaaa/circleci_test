@@ -56,8 +56,8 @@ jobs:
             sudo apt-get -y -qq update
             sudo apt-get -y -qq install python3.4-dev
             sudo curl -O https://bootstrap.pypa.io/get-pip.py
-            python3.4 get-pip.py --user
-            sudo pip install awsebcli --user
+            python3.4 get-pip.py
+            pip install awsebcli
             which eb
   
   d_job:
