@@ -41,12 +41,22 @@ jobs:
         
       # run tests!
       - run: echo start
-      - run: |
-          if [ `which eb` ]; then
-            echo exists eb
-          else
-            pip install awsebcli
-          fi
+      - run:
+        name: Setup AWS credentials
+        command: |
+          mkdir -p ~/.aws
+          printf "[default]\nregion = ${AWS_DEFAULT_REGION}\naws_access_key_id = ${AWS_ACCESS_KEY_ID}\naws_secret_access_key = ${AWS_SECRET_ACCESS_KEY}" > ~/.aws/config
+          printf "[default]\naws_access_key_id = ${AWS_ACCESS_KEY_ID}\naws_secret_access_key = ${AWS_SECRET_ACCESS_KEY}" > ~/.aws/credentials
+          chmod 600 ~/.aws/*
+      - run: cat ~/aws/config
+      - run: cat ~/aws/credentials
+      - run: which eb
+      # - run: |
+      #   docker run --rm \
+      #     -e "AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID" \
+      #     -e "AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY" \
+      #     -e "AWS_DEFAULT_REGION=$AWS_DEFAULT_REGION" \
+      #     lorentzca/eb --help
       - run: sh ./scripts/echoenv.sh
   
   d_job:
