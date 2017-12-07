@@ -69,6 +69,8 @@ jobs:
           paths:
             - /usr/local/bin/eb
           key: awseb
+      
+      - run: eb --help
         
   
   d_job:
