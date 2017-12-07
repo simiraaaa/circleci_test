@@ -33,7 +33,7 @@ jobs:
 
       - restore_cache:
           keys:
-            - eb
+            - awseb
 
       - run: yarn install
 
@@ -67,8 +67,8 @@ jobs:
 
       - save_cache:
           paths:
-            - which eb
-          key: eb
+            - /usr/local/bin/eb
+          key: awseb
         
   
   d_job:
