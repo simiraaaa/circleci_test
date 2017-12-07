@@ -8,6 +8,7 @@ defaults: &defaults
   working_directory: ~/repo
   docker:
     - image: circleci/node:9.2.0
+    - image: coxauto/aws-ebcli
 
 version: 2
 jobs:
@@ -51,26 +52,8 @@ jobs:
             printf "[default]\naws_access_key_id = ${AWS_ACCESS_KEY_ID}\naws_secret_access_key = ${AWS_SECRET_ACCESS_KEY}" > ~/.aws/config
             printf "[default]\naws_access_key_id = ${AWS_ACCESS_KEY_ID}\naws_secret_access_key = ${AWS_SECRET_ACCESS_KEY}" > ~/.aws/credentials
             chmod 600 ~/.aws/*
-      - run:
-          name: Install eb
-          working_directory: /
-          command: |
-            if [ `which eb` ]; then
-              echo exists eb
-            else
-              sudo apt-get -y -qq update
-              sudo apt-get -y -qq install python3.4-dev
-              sudo curl -O https://bootstrap.pypa.io/get-pip.py
-              sudo python3.4 get-pip.py
-              sudo pip install awsebcli
-            fi
-
-      - save_cache:
-          paths:
-            - /usr/local/bin/eb
-          key: awseb
-      
       - run: eb --help
+
         
   
   d_job:
