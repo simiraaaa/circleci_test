@@ -42,12 +42,12 @@ jobs:
       # run tests!
       - run: echo start
       - run:
-        name: Setup AWS credentials
-        command: |
-          mkdir -p ~/.aws
-          printf "[default]\nregion = ${AWS_DEFAULT_REGION}\naws_access_key_id = ${AWS_ACCESS_KEY_ID}\naws_secret_access_key = ${AWS_SECRET_ACCESS_KEY}" > ~/.aws/config
-          printf "[default]\naws_access_key_id = ${AWS_ACCESS_KEY_ID}\naws_secret_access_key = ${AWS_SECRET_ACCESS_KEY}" > ~/.aws/credentials
-          chmod 600 ~/.aws/*
+          name: Setup AWS credentials
+          command: |
+            mkdir -p ~/.aws
+            printf "[default]\nregion = ${AWS_DEFAULT_REGION}\naws_access_key_id = ${AWS_ACCESS_KEY_ID}\naws_secret_access_key = ${AWS_SECRET_ACCESS_KEY}" > ~/.aws/config
+            printf "[default]\naws_access_key_id = ${AWS_ACCESS_KEY_ID}\naws_secret_access_key = ${AWS_SECRET_ACCESS_KEY}" > ~/.aws/credentials
+            chmod 600 ~/.aws/*
       - run: cat ~/aws/config
       - run: cat ~/aws/credentials
       - run: which eb
