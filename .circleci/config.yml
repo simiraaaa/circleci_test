@@ -40,6 +40,7 @@ jobs:
         
       # run tests!
       - run: echo start
+      - run: which pip
       - run: sh ./scripts/echoenv.sh
   
   d_job:
