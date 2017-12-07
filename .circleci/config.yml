@@ -42,9 +42,9 @@ jobs:
       - run: echo start 
       - run: |
         if [ `which eb` ]; then
-          echo exists eb
+        echo exists eb
         else
-          pip install awsebcli
+        pip install awsebcli
         fi
       - run: sh ./scripts/echoenv.sh
   
