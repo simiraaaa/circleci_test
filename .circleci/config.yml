@@ -13,6 +13,13 @@ version: 2
 jobs:
   build:
     <<: *defaults
+    steps:
+      - checkout
+      - run: echo call from api
+      - run: ls
+
+  build_job:
+    <<: *defaults
 
     steps:
       - checkout
@@ -34,6 +41,7 @@ jobs:
       # run tests!
       - run: echo start
       - run: sh ./scripts/echoenv.sh
+      - run: eb --help
   
   d_job:
     <<: *defaults
@@ -50,12 +58,12 @@ jobs:
 
 workflows:
   version: 2
-  build:
+  build_flow:
     jobs:
-      - build
+      - build_job
       - d_job:
           requires:
-            - build
+            - build_job
           filters:
             branches:
               only: 
@@ -63,7 +71,7 @@ workflows:
                 - develop
       - f_job:
           requires:
-            - build
+            - build_job
           filters:
             branches:
               only: /feature\/.*/
