@@ -40,7 +40,6 @@ jobs:
         
       # run tests!
       - run: echo start
-      - run: 
       - run: |
           if [ `which eb` ]; then
             echo exists eb
