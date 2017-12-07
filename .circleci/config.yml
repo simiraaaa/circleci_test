@@ -31,6 +31,10 @@ jobs:
             # fallback to using the latest cache if no exact match is found
             - node_modules-
 
+      - restore_cache:
+          keys:
+            - eb
+
       - run: yarn install
 
       - save_cache:
@@ -50,15 +54,24 @@ jobs:
       - run: cat ~/.aws/config
       - run: cat ~/.aws/credentials
       - run:
-          name: Install dependencies
+          name: Install eb
           working_directory: /
           command: |
-            sudo apt-get -y -qq update
-            sudo apt-get -y -qq install python3.4-dev
-            sudo curl -O https://bootstrap.pypa.io/get-pip.py
-            sudo python3.4 get-pip.py
-            sudo pip install awsebcli
-            which eb
+            if [ `which eb` ]; then
+              echo exists eb
+            else
+              sudo apt-get -y -qq update
+              sudo apt-get -y -qq install python3.4-dev
+              sudo curl -O https://bootstrap.pypa.io/get-pip.py
+              sudo python3.4 get-pip.py
+              sudo pip install awsebcli
+            fi
+
+      - save_cache:
+          paths:
+            - {{which eb}}
+          key: eb
+        
   
   d_job:
     <<: *defaults
