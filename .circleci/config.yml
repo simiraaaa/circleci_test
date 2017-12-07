@@ -8,6 +8,7 @@ defaults: &defaults
   working_directory: ~/repo
   docker:
     - image: circleci/node:9.2.0
+    - image: circleci/awscli:latest
 
 version: 2
 jobs:
