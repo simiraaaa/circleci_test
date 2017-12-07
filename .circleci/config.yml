@@ -51,8 +51,6 @@ jobs:
             printf "[default]\naws_access_key_id = ${AWS_ACCESS_KEY_ID}\naws_secret_access_key = ${AWS_SECRET_ACCESS_KEY}" > ~/.aws/config
             printf "[default]\naws_access_key_id = ${AWS_ACCESS_KEY_ID}\naws_secret_access_key = ${AWS_SECRET_ACCESS_KEY}" > ~/.aws/credentials
             chmod 600 ~/.aws/*
-      - run: cat ~/.aws/config
-      - run: cat ~/.aws/credentials
       - run:
           name: Install eb
           working_directory: /
@@ -69,7 +67,7 @@ jobs:
 
       - save_cache:
           paths:
-            - {{which eb}}
+            - which eb
           key: eb
         
   
